@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всплывающее окно любви</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .popup {
+            display: none; /* Скрываем изначально */
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="popup1" class="popup">
+    <p>Ты меня любишь?</p>
+    <button class="button" onclick="nextPopup(2)">Конечно!</button>
+</div>
+
+<div id="popup2" class="popup">
+    <p>И я тебя безумно сильно люблю ❤❤❤ А ты знаешь, сколько мы вместе?</p>
+    <button class="button" onclick="nextPopup(3)">Да</button>
+    <button class="button" onclick="noaanswer(this)">Цо-то я нинаю</button>
+</div>
+
+<div id="popup3" class="popup">
+    <p>А ты представляешь, что мы вместе уже четыре года?</p>
+    <button class="button" onclick="nextPopup(4)">УЖЕЕЕЕЕ ТАК БИСТРО?</button>
+    <button class="button" onclick="noAnswer(this)">Фига себе, не думаю что это возможно</button>
+</div>
+
+<div id="popup4" class="popup">
+    <p>Я тебя безумно сильно люблю! Спасибо за это!</p>
+    <button class="button" onclick="finalPopup('obozhayu')">Я тебя обожаю</button>
+    <button class="button" onclick="finalPopup('podumayu')">Я подумаю</button>
+</div>
+
+<div id="finalMessage" class="popup">
+    <p id="finalText"></p>
+    
+</div>
+
+<script>
+    // Показать первое всплывающее окно
+    document.getElementById('popup1').style.display = 'block';
+
+    function nextPopup(popupNumber) {
+        // Скрыть все всплывающие окна
+        hideAllPopups();
+        
+        // Показать нужное всплывающее окно
+        document.getElementById('popup' + popupNumber).style.display = 'block';
+    }
+
+    function noAnswer(button) {
+        button.style.transition = 'transform 1s';
+        button.style.transform = 'translateX(100vw)';
+        
+        setTimeout(() => {
+            button.style.display = 'none';
+            alert("Поверь счастье мое, я не меньше тебя в шоках))))");
+        }, 1000);
+    }
+    function noaanswer(button) {
+        button.style.transition = 'transform 1s';
+        button.style.transform = 'translateX(100vw)';
+        
+        setTimeout(() => {
+            button.style.display = 'none';
+            alert("Давайка вместе все вспомним, моя заечка ❤ поэтому сегодня вместе, обязательно обсудим все что с нами происходило за этих целых 4 годика");
+        }, 1000);
+    }
+
+    function finalPopup(action) {
+        hideAllPopups();
+        
+        const finalText = document.getElementById('finalText');
+        
+        if (action === 'obozhayu') {
+            finalText.innerText = "Счастье мое любименькое ❤❤❤) я тебя безумно сильно люблю между прочим ❤❤❤ я безумно благодарен тебе за эти четыре годика ❤❤❤ благодаря тебе мы сейчас туть сидим и болтаем, гуляем целыми днями, иногда даже спим вместе ночами ❤❤❤ спасибо заечка моя, ты прекрасна ❤❤❤❤❤❤❤❤❤❤❤❤ ты представляешь, что ровно 1461 дней назад мы начали наш путь котеночек ❤❤❤) я уверен что дальше больше) ведь несмотря ни на какие-нибудь проблемки мы будем идти вместе, держась за ручку) мы со всем справимся, главное вместе моя заечка ❤❤❤ как никак своих котиков мы еще не завели, а как же стать супер крутыми, купить квартирку.... мечтать можно вечно, самое главное что я с тобой буду всегда моя заечка ❤❤❤ я тебя люблю ❤ спасибо ❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤";
+        } else if (action === 'podumayu') {
+            finalText.innerText = "Я тебе дам подумаю! я тебя безумно люблю ❤❤❤)  БИСТРО заново прошеф))))) не зли молодых программистов) ;
+        }
+        
+        document.getElementById('finalMessage').style.display = 'block';
+    }
+
+    function hideAllPopups() {
+        const popups = document.querySelectorAll('.popup');
+        popups.forEach(popup => {
+            popup.style.display = 'none';
+        });
+    }
+
+    function reset() {
+        hideAllPopups();
+        document.getElementById('popup1').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
